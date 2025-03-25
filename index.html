@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css"> 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">google.charts.load('current', {'packages':['corechart']});</script>
+<script type="text/javascript" src="script.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4VMYM2Y5KW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4VMYM2Y5KW');
+</script>
+</head>
+<body>
+<div id="container" class="layout">
+	<div class="dropdown">
+	  <button class="dropbtn" id="FactionButton">Faction</button>
+	  <div class="dropdown-content">
+	 	<a href="#" onclick="displaymenu(4)">US Forces</a>
+		<a href="#" onclick="displaymenu(0)">British Forces</a>
+		<a href="#" onclick="displaymenu(2)">Wehrmacht Ostheer</a>
+		<a href="#" onclick="displaymenu(3)">Soviet Army</a>
+		<a href="#" onclick="displaymenu(1)">Oberkommando West</a>
+	  </div>
+	</div>
+	<div id="unitbuttons" class="topmenu"></div>
+	<div id="info" class="topmenu">
+		<div class="dropdown">
+			<button class="dropbtn" id="covertext">Cover</button>
+			<div class="dropdown-content">
+				<a href="#" onclick="changecover(0)">Default Cover</a>
+				<a href="#" onclick="changecover(1)">Light Cover</a>
+				<a href="#" onclick="changecover(2)">Heavy Cover</a>
+				<a href="#" onclick="changecover(3)">Garrison Cover</a>
+				<a href="#" onclick="changecover(4)">Negative Cover</a>
+			</div>
+		</div>
+	</div>
+	<div id="info" class="topmenu">
+		<div class="dropdown">
+			<button class="dropbtn" id="covertext">Info</button>
+			<div class="dropdown-content">
+				<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2854603302">VeLas Workshop Page</a>
+				<a href="https://discord.gg/PzbZMTRh25">VeLas Discord</a>
+			</div>
+		</div>
+	</div>
+	<div id="curve_chart"></div>
+	<div id="content" class="content"></div>
+</div>
+
+<div id="USF" class="unitlist">
+<div class="dropdown">
+  <button class="dropbtn">Infantry</button>
+  <div class="dropdown-content">
+<a href="#9" onclick="displayunit(9)">Rear Echelon Troops</a>
+<a href="#10" onclick="displayunit(10)">Riflemen</a>
+<a href="#11" onclick="displayunit(11)">Medics</a>
+<a href="#13" onclick="displayunit(13)">Vehicle Crew</a>
+<a href="#2" onclick="displayunit(2)">Lieutenant</a>
+<a href="#169" onclick="displayunit(169)">M20 Vehicle Crew</a>
+<a href="#1" onclick="displayunit(1)">Captain</a>
+<a href="#3" onclick="displayunit(3)">Major</a>
+<a href="#168" onclick="displayunit(168)">Combined Elite Infantry</a>
+<a href="#6" onclick="displayunit(6)">Pathfinders</a>
+<a href="#7" onclick="displayunit(7)">I&R Pathfinders</a>
+<a href="#4" onclick="displayunit(4)">Paratrooper</a>
+<a href="#218" onclick="displayunit(218)">Assault Engineer Squad</a>
+<a href="#158" onclick="displayunit(158)">Cavalry Riflemen</a>
+<a href="#8" onclick="displayunit(8)">Rangers</a>
+<a href="#170" onclick="displayunit(170)">Vehicle Crew Airbourne</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Team weapons</button>
+  <div class="dropdown-content">
+<a href="#16" onclick="displayunit(16)">M1 81mm Mortar Team</a>
+<a href="#183" onclick="displayunit(183)">M2 60mm Mortar Team</a>
+<a href="#17" onclick="displayunit(17)">M2HB .50 cal HMG Team</a>
+<a href="#14" onclick="displayunit(14)">M1 57mm AT Gun</a>
+<a href="#15" onclick="displayunit(15)">M1 Pack Howitzer</a>
+<a href="#185" onclick="displayunit(185)">M1919A4 .30 cal Machine Gun</a>
+<a href="#186" onclick="displayunit(186)">Airborne M1 57mm Anti-Tank Gun</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Vehicles</button>
+  <div class="dropdown-content">
+<a href="#21" onclick="displayunit(21)">M26 Pershing Heavy Tank</a>
+<a href="#20" onclick="displayunit(20)">M20 Utility Car</a>
+<a href="#30" onclick="displayunit(30)">M5A1 Stuart</a>
+<a href="#23" onclick="displayunit(23)">M15A1 AA Half-track</a>
+<a href="#29" onclick="displayunit(29)">M4A3 Sherman Medium Tank</a>
+<a href="#22" onclick="displayunit(22)">M36 'Jackson' Tank Destroyer</a>
+<a href="#33" onclick="displayunit(33)">M8A1 Howitzer Motor Carriage</a>
+<a href="#184" onclick="displayunit(184)">M7B1 Priest Kangaroo</a>
+<a href="#18" onclick="displayunit(18)">WC51 Military Truck</a>
+<a href="#187" onclick="displayunit(187)">M3A1 Light Scout Car</a>
+<a href="#24" onclick="displayunit(24)">M21 Mortar Half-track</a>
+<a href="#25" onclick="displayunit(25)">M3 Half-track</a>
+<a href="#31" onclick="displayunit(31)">M5 Half-track Transport</a>
+<a href="#34" onclick="displayunit(34)">M8 Greyhound</a>
+<a href="#19" onclick="displayunit(19)">M10 'Wolverine' Tank Destroyer</a>
+<a href="#28" onclick="displayunit(28)">M4A3(76) Sherman Medium Tank</a>
+<a href="#188" onclick="displayunit(188)">M4A3(105) Sherman Medium Tank</a>
+<a href="#27" onclick="displayunit(27)">105mm Bulldozer Sherman</a>
+<a href="#189" onclick="displayunit(189)">M4A3E2 Sherman 'Jumbo'</a>
+<a href="#190" onclick="displayunit(190)">M4A3E2(76) Sherman 'Jumbo'</a>
+<a href="#26" onclick="displayunit(26)">M4A3E8 Sherman 'Easy Eight'</a>
+<a href="#32" onclick="displayunit(32)">M7B1 'Priest' Howitzer </a>
+<a href="#35" onclick="displayunit(35)">M4 Sherman Calliope</a>
+<a href="#191" onclick="displayunit(191)">M4 Sherman Killope</a>
+  </div>
+</div>
+
+</div>
+
+<div id="British" class="unitlist">
+<div class="dropdown">
+  <button class="dropbtn">Infantry</button>
+  <div class="dropdown-content">
+<a href="#40" onclick="displayunit(40)">Royal Engineers</a>
+<a href="#43" onclick="displayunit(43)">Infantry Section</a>
+<a href="#39" onclick="displayunit(39)">Coldstream Guards</a>
+<a href="#36" onclick="displayunit(36)">British Medic Squad</a>
+<a href="#42" onclick="displayunit(42)">Sniper</a>
+<a href="#171" onclick="displayunit(171)">Vehicle Crew</a>
+<a href="#37" onclick="displayunit(37)">Assault Officer</a>
+<a href="#172" onclick="displayunit(172)">Royal Engineer Demolition Team</a>
+<a href="#41" onclick="displayunit(41)">Royal Engineer Recovery Squad</a>
+<a href="#159" onclick="displayunit(159)">Assault Infantry Section</a>
+<a href="#167" onclick="displayunit(167)">Raid Section</a>
+<a href="#173" onclick="displayunit(173)">Reconnaissance Section</a>
+<a href="#44" onclick="displayunit(44)">Tank Hunter Infantry Section</a>
+<a href="#38" onclick="displayunit(38)">Commandos</a>
+<a href="#174" onclick="displayunit(174)">PIAT Commandos</a>
+<a href="#175" onclick="displayunit(175)">Forward Observation Officer</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Team weapons</button>
+  <div class="dropdown-content">
+<a href="#48" onclick="displayunit(48)">Vickers HMG Team</a>
+<a href="#50" onclick="displayunit(50)">3-Inch Mortar Emplacement</a>
+<a href="#46" onclick="displayunit(46)">QF 6-Pounder AT Gun</a>
+<a href="#47" onclick="displayunit(47)">Bofors QF 40mm Emplacement</a>
+<a href="#45" onclick="displayunit(45)">QF 17-Pounder Emplacement</a>
+<a href="#192" onclick="displayunit(192)">QF 25-Pounder Howitzer</a>
+<a href="#161" onclick="displayunit(161)">M1 81mm Mortar Team</a>
+<a href="#193" onclick="displayunit(193)">M1 75mm Pack Howitzer</a>
+<a href="#49" onclick="displayunit(49)">'Land Mattress'</a>
+
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Vehicles</button>
+  <div class="dropdown-content">
+<a href="#61" onclick="displayunit(61)">Universal Carrier</a>
+<a href="#51" onclick="displayunit(51)">AEC Mk. III 75mm Armored Car</a>
+<a href="#52" onclick="displayunit(52)">Centaur AA Mk. II Cruiser</a>
+<a href="#57" onclick="displayunit(57)">Cromwell Mk. IV Cruiser</a>
+<a href="#60" onclick="displayunit(60)">Sherman Firefly</a>
+<a href="#184" onclick="displayunit(184)">M7B1 Priest Kangaroo</a>
+<a href="#56" onclick="displayunit(56)">Comet Tank</a>
+<a href="#55" onclick="displayunit(55)">Churchill Mk. VII </a>
+<a href="#219" onclick="displayunit(219)">WC51 Military Truck</a>
+<a href="#194" onclick="displayunit(194)">M3A1 Light Scout Car</a>
+<a href="#58" onclick="displayunit(58)">M3 Halftrack Resupply</a>
+<a href="#195" onclick="displayunit(195)">M5 Half-track Transport</a>
+<a href="#196" onclick="displayunit(196)">M21 Mortar Half-track</a>
+<a href="#211" onclick="displayunit(211)">Tetrarch Light Tank</a>
+<a href="#197" onclick="displayunit(197)">Valentine Mk. XI Tank</a>
+<a href="#62" onclick="displayunit(62)">Command Valentine Mk. XI Tank</a>
+<a href="#198" onclick="displayunit(198)">M8A1 Howitzer Motor Carriage</a>
+<a href="#160" onclick="displayunit(160)">M10 'Achilles' Tank Destroyer</a>
+<a href="#59" onclick="displayunit(59)">Sexton Self-Propelled Artillery</a>
+<a href="#53" onclick="displayunit(53)">Churchill AVRE</a>
+<a href="#54" onclick="displayunit(54)">Churchill Crocodile</a>
+  </div>
+</div>
+
+</div>
+
+<div id="Ostheer" class="unitlist">
+<div class="dropdown">
+  <button class="dropbtn">Infantry</button>
+  <div class="dropdown-content">
+<a href="#73" onclick="displayunit(73)">Pioneer Squad</a>
+<a href="#72" onclick="displayunit(72)">Panzergrenadiers</a>
+<a href="#224" onclick="displayunit(224)">Jaeger Light Infantry</a>
+<a href="#65" onclick="displayunit(65)">Grenadiers</a>
+<a href="#74" onclick="displayunit(74)">Sniper</a>
+<a href="#64" onclick="displayunit(64)">Urban Assault Panzergrenadiers</a>
+<a href="#63" onclick="displayunit(63)">Assault Grenadiers</a>
+<a href="#70" onclick="displayunit(70)">Osttruppen Squad</a>
+<a href="#69" onclick="displayunit(69)">Jaeger Command Squad</a>
+<a href="#68" onclick="displayunit(68)">Artillery Field Officer</a>
+<a href="#71" onclick="displayunit(71)">Luftwaffe Field Officer</a>
+<a href="#75" onclick="displayunit(75)">Stormtroopers</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Team weapons</button>
+  <div class="dropdown-content">
+<a href="#66" onclick="displayunit(66)">MG42 HMG Team</a>
+<a href="#67" onclick="displayunit(67)">GrW 34 Mortar Team</a>
+<a href="#76" onclick="displayunit(76)">Pak 40 AT Gun</a>
+<a href="#77" onclick="displayunit(77)">Pak 43 AT Gun</a>
+<a href="#84" onclick="displayunit(84)">leFH 18 Artillery</a>
+<a href="#139" onclick="displayunit(139)">MG34 Heavy Machine Gun Team</a>
+<a href="#138" onclick="displayunit(138)">le.IG 18 Support Gun</a>
+<a href="#138" onclick="displayunit(222)">Pak 97/38 7.5cm Anti-tank Gun</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Vehicles</button>
+  <div class="dropdown-content">
+<a href="#91" onclick="displayunit(91)">SdKfz 222 Scout Car</a>
+<a href="#83" onclick="displayunit(83)">SdKfz 251 Half-track</a>
+<a href="#92" onclick="displayunit(92)">StuG III Ausf. E Assault Gun </a>
+<a href="#85" onclick="displayunit(85)">Flakpanzer IV Ostwind</a>
+<a href="#200" onclick="displayunit(200)">Panzer IV Ausf F1</a>
+<a href="#89" onclick="displayunit(89)">Panzer IV Medium Tank</a>
+<a href="#78" onclick="displayunit(78)">Sturmpanzer IV "Brummbär"</a>
+<a href="#87" onclick="displayunit(87)">Panzerwerfer 42 Multiple Rocket Launcher</a>
+<a href="#86" onclick="displayunit(86)">Panther PzKpfw V Medium Tank</a>
+<a href="#199" onclick="displayunit(199)">Jagdpanzer 38 'Hetzer'</a>
+<a href="#142" onclick="displayunit(142)">Goliath</a>
+<a href="#81" onclick="displayunit(81)">SdKfz 250 Half-track</a>
+<a href="#223" onclick="displayunit(223)">Sd.Kfz. 223 Scout Car</a>
+<a href="#90" onclick="displayunit(90)">Sdkfz 234 'Puma' Armored Car</a>
+<a href="#201" onclick="displayunit(201)">Jagdpanzer SU-76M(r)</a>
+<a href="#82" onclick="displayunit(82)">Panzer III</a>
+<a href="#93" onclick="displayunit(93)">StuG III Ace Ausf. G Assault Gun </a>
+<a href="#88" onclick="displayunit(88)">Panzer IV Command Tank</a>
+<a href="#164" onclick="displayunit(164)">Panzer IV Ausf. J Medium Tank</a>
+<a href="#202" onclick="displayunit(202)">Panzer T-34/76 747(r)</a>
+<a href="#203" onclick="displayunit(203)">Jagdpanzer SU-85 748(r)</a>
+<a href="#204" onclick="displayunit(204)">Panzer T-34/85 747(r)</a>
+<a href="#205" onclick="displayunit(205)">Panzer KV-1A 753(r)</a>
+<a href="#95" onclick="displayunit(95)">Tiger PzKpfw VI</a>
+<a href="#94" onclick="displayunit(94)">Tiger Ace PzKpfw VI</a>
+<a href="#79" onclick="displayunit(79)">Elefant Heavy Tank Destroyer</a>
+<a href="#206" onclick="displayunit(206)">Panzer KV-2 754(r)</a>
+  </div>
+</div>
+
+</div>
+
+<div id="Soviet" class="unitlist">
+<div class="dropdown">
+  <button class="dropbtn">Infantry</button>
+  <div class="dropdown-content">
+<a href="#96" onclick="displayunit(96)">Combat Engineer Squad</a>
+<a href="#97" onclick="displayunit(97)">Conscript Infantry Squad</a>
+<a href="#102" onclick="displayunit(102)">Sergeant Infantry Squad</a>
+<a href="#107" onclick="displayunit(107)">Penal Battalion</a>
+<a href="#104" onclick="displayunit(104)">Scout Sniper Squad</a>
+<a href="#177" onclick="displayunit(177)">Designated Marksman</a>
+<a href="#176" onclick="displayunit(176)">Fresh Conscript Squad</a>
+<a href="#108" onclick="displayunit(108)">Shock Troops</a>
+<a href="#179" onclick="displayunit(179)">Assault Engineer Squad</a>
+<a href="#165" onclick="displayunit(165)">Commissar Command Squad</a>
+<a href="#106" onclick="displayunit(106)">Guards Rifle Infantry</a>
+<a href="#105" onclick="displayunit(105)">Guards Rifle Assault</a>
+<a href="#103" onclick="displayunit(103)">Partisan Troops</a>
+<a href="#166" onclick="displayunit(166)">Guards Airborne Troops</a>
+<a href="#178" onclick="displayunit(178)">Mountain Rifle Infantry Recon Squad</a>
+<a href="#180" onclick="displayunit(180)">Ania</a>
+
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Team weapons</button>
+  <div class="dropdown-content">
+<a href="#99" onclick="displayunit(99)">M1910 Maxim HMG</a>
+<a href="#121" onclick="displayunit(121)">M-42 AT Gun</a>
+<a href="#207" onclick="displayunit(207)">SG-43 Heavy Machine Gun</a>
+<a href="#101" onclick="displayunit(101)">PM-41 Mortar Squad</a>
+<a href="#122" onclick="displayunit(122)">ZiS-3 Field Gun</a>
+<a href="#98" onclick="displayunit(98)">DShK-38 Heavy Machine Gun</a>
+<a href="#100" onclick="displayunit(100)">HM-38 Mortar Squad</a>
+<a href="#221" onclick="displayunit(221)">ZiS-2 Anti-tank Gun</a>
+<a href="#116" onclick="displayunit(116)">ML-20 Howitzer</a>
+<a href="#115" onclick="displayunit(115)">B-4 203mm Howitzer</a>
+
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Vehicles</button>
+  <div class="dropdown-content">
+<a href="#117" onclick="displayunit(117)">M3A1 Light Scout Car</a>
+<a href="#118" onclick="displayunit(118)">M5 Half-track Transport</a>
+<a href="#125" onclick="displayunit(125)">T-70 Light Tank</a>
+<a href="#123" onclick="displayunit(123)">SU-76M Assault Gun</a>
+<a href="#111" onclick="displayunit(111)">BM-13 Katyusha</a>
+<a href="#126" onclick="displayunit(126)">T-34/76 Medium Tank</a>
+<a href="#124" onclick="displayunit(124)">SU-85 Tank Destroyer</a>
+<a href="#208" onclick="displayunit(208)">T-34/57 Medium Tank</a>
+<a href="#25" onclick="displayunit(25)">M3 Half-track</a>
+<a href="#119" onclick="displayunit(119)">T-60 Light Tank</a>
+<a href="#127" onclick="displayunit(127)">T-34/85 Medium Tank</a>
+<a href="#209" onclick="displayunit(209)">T-34/85 Red Banner Medium Tanks</a>
+<a href="#120" onclick="displayunit(120)">M4C Sherman</a>
+<a href="#210" onclick="displayunit(210)">M10 'Wolverine' Tank Destroyer</a>
+<a href="#112" onclick="displayunit(112)">KV-1 Heavy Tank</a>
+<a href="#114" onclick="displayunit(114)">KV-8 Flamethrower Tank</a>
+<a href="#113" onclick="displayunit(113)">KV-2 Heavy Assault Tank</a>
+<a href="#109" onclick="displayunit(109)">IS-2 Heavy Tank</a>
+<a href="#110" onclick="displayunit(110)">ISU-152 Heavy Assault Gun</a>
+  </div>
+</div>
+
+</div>
+
+<div id="OKW" class="unitlist">
+<div class="dropdown">
+  <button class="dropbtn">Infantry</button>
+  <div class="dropdown-content">
+<a href="#128" onclick="displayunit(128)">Sturmpioneer Squad</a>
+<a href="#134" onclick="displayunit(134)">Volksgrenadiers</a>
+<a href="#132" onclick="displayunit(132)">Obersoldaten</a>
+<a href="#129" onclick="displayunit(129)">Fallschirmjäger</a>
+<a href="#130" onclick="displayunit(130)">Sturm Offizier</a>
+<a href="#131" onclick="displayunit(131)">Jaeger Light Infantry Recon</a>
+<a href="#133" onclick="displayunit(133)">Panzerfüsilier</a>
+<a href="#181" onclick="displayunit(181)">Recovery Pioneer Squad</a>
+<a href="#182" onclick="displayunit(182)">Urban Assault Light Infantry</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Team weapons</button>
+  <div class="dropdown-content">
+<a href="#137" onclick="displayunit(137)">Flak Emplacement</a>
+<a href="#135" onclick="displayunit(135)">Raketenwerfer 43 AT Launcher</a>
+<a href="#136" onclick="displayunit(136)">2cm Flak 38 Emplacement</a>
+<a href="#139" onclick="displayunit(139)">MG34 Heavy Machine Gun Team</a>
+<a href="#138" onclick="displayunit(138)">le.IG 18 Support Gun</a>
+<a href="#145" onclick="displayunit(145)">leFH 18 Artillery</a>
+<a href="#140" onclick="displayunit(140)">Pak 43 88mm Anti-tank gun</a>
+<a href="#216" onclick="displayunit(216)">MG42 Heavy Machine Gun Team</a>
+<a href="#217" onclick="displayunit(217)">Granatwerfer 42 8cm Light Mortar</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Vehicles</button>
+  <div class="dropdown-content">
+<a href="#148" onclick="displayunit(148)">Tiger B 'Königstiger'</a>
+<a href="#149" onclick="displayunit(149)">Kübelwagen</a>
+<a href="#157" onclick="displayunit(157)">Elite Kübelwagen</a>
+<a href="#212" onclick="displayunit(212)">Multifunctional Kübelwagen</a>
+<a href="#141" onclick="displayunit(141)">SdKfz 251/17 Flak Half-track</a>
+<a href="#153" onclick="displayunit(153)">Panzer II Ausf. L 'Luchs' Light Tank</a>
+<a href="#155" onclick="displayunit(155)">SdKfz 234 'Puma' Heavy Armored Car</a>
+<a href="#143" onclick="displayunit(143)">SdKfz 251 "Stuka zu Fuß" Half-track</a>
+<a href="#146" onclick="displayunit(146)">Jagdpanzer IV/70 (V)</a>
+<a href="#154" onclick="displayunit(154)">Panzer IV Ausf. J Medium Tank</a>
+<a href="#151" onclick="displayunit(151)">Panther PzKpfw V 'Medium' Tank</a>
+<a href="#150" onclick="displayunit(150)">Flakpanzer IV Ostwind</a>
+<a href="#142" onclick="displayunit(142)">Goliath</a>
+<a href="#162" onclick="displayunit(162)">Sd.Kfz. 221 Scout Car</a>
+<a href="#220" onclick="displayunit(220)">Sd.Kfz. 222 Scout Car</a>
+<a href="#213" onclick="displayunit(213)">SdKfz 251 Half-track</a>
+<a href="#214" onclick="displayunit(214)">SdKfz 251 Repair Half-track</a>
+<a href="#144" onclick="displayunit(144)">Flammpanzer 38 'Hetzer'</a>
+<a href="#215" onclick="displayunit(215)">Sturmpanzer IV 'Brummbär''</a>
+<a href="#152" onclick="displayunit(152)">Panther PzKpfw V Command Tank</a>
+<a href="#163" onclick="displayunit(163)">Tiger PzKpfw VI</a>
+<a href="#156" onclick="displayunit(156)">"Jagdtiger" Panzerjäger Tiger Ausf. B</a>
+<a href="#147" onclick="displayunit(147)">Jagdtiger</a>
+  </div>
+</div>
+</div>
+</body></html>
