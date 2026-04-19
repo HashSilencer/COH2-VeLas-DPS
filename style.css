@@ -1,125 +1,759 @@
-dl {
+/* =============================================
+   COH2 UNIT VIEWER — VELAS MINIMALIST EDITION
+   With Dark Mode Toggle (Discord Ash Grey Style)
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Light Mode (Default) */
+  --color-black:    #000000;
+  --color-white:    #ffffff;
+  --color-gray-50:  #f9f9f9;
+  --color-gray-100: #f0f0f0;
+  --color-gray-200: #e8e8e8;
+  --color-gray-300: #d0d0d0;
+  --color-gray-400: #b0b0b0;
+  --color-gray-500: #808080;
+  --color-gray-600: #606060;
+  --color-gray-700: #404040;
+  --color-gray-800: #202020;
+  --color-gray-900: #0a0a0a;
   
+  --bg-primary:     #ffffff;
+  --bg-secondary:   #f9f9f9;
+  --bg-tertiary:    #f0f0f0;
+  --text-primary:   #000000;
+  --text-secondary: #606060;
+  --text-muted:     #a0a0a0;
+  --border-color:   #d0d0d0;
+  --border-dark:    #404040;
+  --accent-black:   #000000;
+}
+
+/* Dark Mode (Discord Ash Grey) */
+body.dark-mode {
+  --bg-primary:     #36393f;
+  --bg-secondary:   #2f3136;
+  --bg-tertiary:    #282c34;
+  --text-primary:   #dcddde;
+  --text-secondary: #b9bbbe;
+  --text-muted:     #72767d;
+  --border-color:   #202225;
+  --border-dark:    #1a1d23;
+  --accent-black:   #dcddde;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  font-weight: 400;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: 4px;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: #202225;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: #2c2f33;
+}
+
+/* =============================================
+   LAYOUT
+   ============================================= */
+
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* =============================================
+   PAGE TITLE BANNER (REMOVED LOGO)
+   ============================================= */
+
+.page-title-banner {
+  background: var(--bg-primary);
+  border-bottom: 2px solid var(--color-black);
+  padding: 30px 0;
+  margin: 0 -24px 40px;
+  text-align: center;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+body.dark-mode .page-title-banner {
+  border-bottom-color: #202225;
+}
+
+.page-title-banner h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+.page-title-banner .subtitle {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* =============================================
+   TOP NAVIGATION BAR
+   ============================================= */
+
+.topnav-bar {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-bottom: 2px solid var(--color-black);
+  padding: 12px 16px;
+  margin: 0 -24px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .topnav-bar {
+  border-color: var(--border-color);
+  border-bottom-color: #202225;
+}
+
+/* =============================================
+   DARK MODE TOGGLE BUTTON
+   ============================================= */
+
+.theme-toggle {
+  margin-left: auto;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--color-black);
+}
+
+body.dark-mode .theme-toggle:hover {
+  border-color: #dcddde;
+}
+
+.theme-toggle:active {
+  background: var(--bg-tertiary);
+}
+
+/* =============================================
+   DROPDOWN BUTTONS
+   ============================================= */
+
+.dropbtn {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 8px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  position: relative;
+}
+
+.dropbtn::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-black);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .dropbtn::before {
+  background: #dcddde;
+}
+
+.dropbtn:hover {
+  background: var(--bg-secondary);
+  border-color: var(--color-black);
+}
+
+body.dark-mode .dropbtn:hover {
+  border-color: #dcddde;
+}
+
+.dropbtn:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.dropbtn:active {
+  background: var(--bg-tertiary);
+}
+
+#FactionButton,
+#covertext {
+  border: 1.5px solid var(--color-black);
+  font-weight: 700;
+}
+
+body.dark-mode #FactionButton,
+body.dark-mode #covertext {
+  border-color: #dcddde;
+}
+
+/* =============================================
+   DROPDOWN CONTAINER
+   ============================================= */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.topmenu {
+  position: relative;
+  display: inline-block;
+}
+
+/* =============================================
+   DROPDOWN CONTENT
+   ============================================= */
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg-primary);
+  min-width: 180px;
+  max-height: 70vh;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-top: 2px solid var(--color-black);
+  z-index: 100;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  animation: slideDown 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .dropdown-content {
+  border-top-color: #202225;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-content a {
+  color: var(--text-primary);
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.dropdown-content a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-black);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.15s;
+}
+
+body.dark-mode .dropdown-content a::before {
+  background: #dcddde;
+}
+
+.dropdown-content a:hover {
+  background: var(--bg-secondary);
+  padding-left: 18px;
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* =============================================
+   UNIT BUTTONS
+   ============================================= */
+
+#unitbuttons {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  vertical-align: middle;
+}
+
+/* =============================================
+   UNIT LIST
+   ============================================= */
+
+.unitlist {
+  display: none;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+/* =============================================
+   CONTENT AREA
+   ============================================= */
+
+.content {
+  margin-top: 24px;
+}
+
+/* =============================================
+   GOOGLE CHART
+   ============================================= */
+
+#curve_chart {
+  width: 100%;
+  min-height: 300px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  margin: 24px 0;
+  transition: all 0.3s ease;
+}
+
+/* =============================================
+   ACCORDION
+   ============================================= */
+
+div.accordion {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 12px 14px;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--color-black);
+  text-align: left;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  transition: all 0.2s;
+  margin-top: 2px;
+}
+
+body.dark-mode div.accordion {
+  border-left-color: #dcddde;
+}
+
+div.accordion a {
+  color: var(--text-primary);
+  text-decoration: none;
+  display: block;
+}
+
+div.accordion:hover {
+  background: var(--bg-tertiary);
+  border-left-color: var(--color-black);
+}
+
+body.dark-mode div.accordion:hover {
+  border-left-color: #dcddde;
+}
+
+div.accordion.active {
+  background: var(--bg-tertiary);
+  border-left-color: var(--color-black);
+}
+
+body.dark-mode div.accordion.active {
+  border-left-color: #dcddde;
+}
+
+div.accordion:after {
+  content: '▼';
+  color: var(--text-primary);
+  float: right;
+  font-size: 10px;
+  transition: transform 0.2s;
+  font-weight: 800;
+}
+
+div.accordion.active:after {
+  transform: rotate(180deg);
+}
+
+/* =============================================
+   PANEL (Accordion Content)
+   ============================================= */
+
+div.panel {
+  padding: 12px 14px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-top: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =============================================
+   STAT BLOCKS
+   ============================================= */
+
+.statdiv {
+  display: inline-block;
+  vertical-align: top;
+  width: 300px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 14px;
+  margin: 8px;
+  transition: all 0.2s;
+}
+
+.statdiv:hover {
+  border-color: var(--color-black);
+  background: var(--bg-tertiary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode .statdiv:hover {
+  border-color: #dcddde;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.astatdiv {
+  display: inline-block;
+  vertical-align: top;
+  width: 620px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 14px;
+  margin: 8px;
+  transition: all 0.3s ease;
+}
+
+/* =============================================
+   DEFINITION LISTS
+   ============================================= */
+
+dl {
   overflow: hidden;
   padding: 0;
-  margin: 0
+  margin: 4px 0;
 }
 
 dt {
   float: left;
   width: 55%;
-  /* adjust the width; make sure the total of both is 100% */
-  padding: 0;
-  margin: 0
+  padding: 3px 0;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
 }
+
 dd {
   float: right;
   width: 45%;
-  /* adjust the width; make sure the total of both is 100% */
-  padding: 0;
-  margin: 0
+  padding: 3px 0;
+  margin: 0;
+  color: var(--text-primary);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
 }
 
-.statdiv {
-	vertical-align:top;
-	width: 320px;
-	display: inline-block;
+/* =============================================
+   TABLES
+   ============================================= */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 12px 0;
+  font-size: 12px;
 }
 
-.astatdiv {
-	width: 640px;
-	display: inline-block;
+table th {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--color-black);
+  transition: all 0.3s ease;
 }
 
-.unitlist {
-   display: none;
+body.dark-mode table th {
+  border-bottom-color: #202225;
 }
 
-.content {
+table td {
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  text-align: center;
+  background: var(--bg-primary);
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.curve_chart {
-	width: 90%;
+table tr:nth-child(even) td {
+  background: var(--bg-secondary);
 }
 
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+table tr:hover td {
+  background: var(--bg-tertiary);
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+/* =============================================
+   HEADINGS
+   ============================================= */
+
+h1, h2, h3, h4 {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  margin: 12px 0 6px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  transition: color 0.3s ease;
 }
 
-.topmenu {
-    position: relative;
-    display: inline-block;
+h1 {
+  font-size: 24px;
+  font-weight: 800;
+  border-bottom: 2px solid var(--color-black);
+  padding-bottom: 8px;
+  transition: border-color 0.3s ease;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+body.dark-mode h1 {
+  border-bottom-color: #202225;
 }
 
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
+h2 {
+  font-size: 16px;
+  border-left: 3px solid var(--color-black);
+  padding-left: 10px;
+  transition: border-color 0.3s ease;
+}
+
+body.dark-mode h2 {
+  border-left-color: #202225;
+}
+
+h3 {
+  font-size: 13px;
+  border-left: 2px solid var(--color-black);
+  padding-left: 8px;
+  transition: border-color 0.3s ease;
+}
+
+body.dark-mode h3 {
+  border-left-color: #202225;
+}
+
+h4 {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* =============================================
+   LINKS
+   ============================================= */
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.2s;
+}
+
+a:hover {
+  border-bottom-color: var(--color-black);
+  color: var(--text-primary);
+}
+
+body.dark-mode a:hover {
+  border-bottom-color: #dcddde;
+}
+
+/* =============================================
+   MISC
+   ============================================= */
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 16px 0;
+  transition: border-color 0.3s ease;
+}
+
+p {
+  color: var(--text-primary);
+  margin: 6px 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+strong, b {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+
+body::after {
+  content: 'Coh2 Unit Viwer VeLas Edition';
+  display: block;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  padding: 24px 0 12px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 60px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 768px) {
+  .statdiv {
+    width: 100%;
     display: block;
-}
+    margin: 8px 0;
+  }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-.dropdown:hover .dropdown-content {
+  .astatdiv {
+    width: 100%;
     display: block;
-}
+    margin: 8px 0;
+  }
 
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}
+  .layout {
+    padding: 0 16px 40px;
+  }
 
-div.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 4px;
-    width: 80%;
-    border: 1px solid #000000;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.1s;
-}
+  .page-title-banner {
+    margin: 0 -16px 24px;
+    padding: 30px 0;
+  }
 
-div.accordion a {
-	color: black;
-    display: block;
-}
+  .topnav-bar {
+    margin: 0 -16px 24px;
+  }
 
-div.accordion.active, button.accordion:hover {
-    background-color: #ddd;
-}
+  .dropbtn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
 
-div.accordion:after {
-    color: #777;
-    font-weight: bold;
-    float: right;
-    margin-left: 5px;
-}
+  .theme-toggle {
+    padding: 6px 10px;
+    font-size: 11px;
+    margin-left: 4px;
+  }
 
-div.panel {
-    padding: 0 4px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.1s ease-out;
+  .page-title-banner h1 {
+    font-size: 20px;
+  }
 }
